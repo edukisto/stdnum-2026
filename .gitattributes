@@ -1,0 +1,16 @@
+# Default settings for all files.
+# Use `text` if `.gitignore` allows tracking of only text files.
+# Use `text=auto` if `.gitignore` allows tracking of both text and binary files.
+* text=auto eol=lf whitespace=tab-in-indent,tabwidth=2
+
+*.css diff=css
+
+*.html diff=html
+
+# 4-space indentation for cross-platform consistency.
+# 2 trailing spaces indicate a line break.
+*.md diff=markdown whitespace=-blank-at-eol,tab-in-indent,tabwidth=4
+*.mdx diff=markdown whitespace=-blank-at-eol,tab-in-indent,tabwidth=4
+
+# Should not be treated as binary data.
+*.svg text
