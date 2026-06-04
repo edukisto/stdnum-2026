@@ -8,13 +8,13 @@ import tsPlugin, { type ConfigWithExtends } from 'typescript-eslint';
 
 type tsLanguageOptions = ConfigWithExtends['languageOptions'];
 
-const json = jsonPlugin.configs.recommended;
+const jsonConfig = jsonPlugin.configs.recommended;
 
-const md = mdPlugin.configs.recommended;
+const mdConfig = mdPlugin.configs.recommended;
 
-const mdx = mdxPlugin.configs.flat;
+const mdxConfig = mdxPlugin.configs.flat;
 
-const stylistic = stylisticPlugin.configs.customize({
+const stylisticConfig = stylisticPlugin.configs.customize({
   arrowParens: true,
   blockSpacing: true,
   braceStyle: 'stroustrup',
@@ -30,26 +30,26 @@ const stylistic = stylisticPlugin.configs.customize({
 const eslintConfig: Linter.Config[] = [
   globalIgnores([
     '**',
-    '!{packages,xxx}/**/',
+    '!packages/**/',
     '!**/*.{code-workspace,js,json,jsx,md,mdx,ts,tsx}',
     '**/{coverage,node_modules}/**',
     '**/*.d.ts',
   ]),
   {
-    ...stylistic,
+    ...stylisticConfig,
     files: [
       '**/*.{js,jsx}',
     ],
   },
   {
-    ...json,
+    ...jsonConfig,
     files: [
       '**/*.json',
     ],
     language: 'json/json',
   },
   {
-    ...json,
+    ...jsonConfig,
     files: [
       '**/*.code-workspace',
       '**/tsconfig*.json',
@@ -59,7 +59,7 @@ const eslintConfig: Linter.Config[] = [
       allowTrailingCommas: true,
     } satisfies JSONLanguageOptions,
   },
-  ...md,
+  ...mdConfig,
   {
     files: [
       '**/*.md',
@@ -75,23 +75,16 @@ const eslintConfig: Linter.Config[] = [
     },
   },
   {
-    ...mdx,
+    ...mdxConfig,
     files: [
       '**/*.{md,mdx}',
     ],
     processor: mdxPlugin.createRemarkProcessor({
       lintCodeBlocks: true,
-      // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-      // lintCodeBlocks: true,
-      // lintCodeBlocks: true,
-      // cwd: '',
-      // ignoreRemarkConfig: true,
-      // languageMapper: {},
-      // remarkConfigPath: '',
     }),
   },
   {
-    ...stylistic,
+    ...stylisticConfig,
     files: [
       '**/*.{ts,tsx}',
     ],
