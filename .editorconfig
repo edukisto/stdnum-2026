@@ -1,0 +1,21 @@
+root = true
+
+# Default settings for all files.
+# Yes, I know about `indent_size = tab`.
+[*]
+charset = utf-8
+end_of_line = lf
+indent_size = 2
+indent_style = space
+insert_final_newline = true
+max_line_length = off
+tab_width = 2
+trim_trailing_whitespace = true
+
+# 4-space indentation for cross-platform consistency.
+# 2 trailing spaces indicate a line break.
+[*.{md,mdx}]
+indent_size = 4
+indent_style = space
+tab_width = 4
+trim_trailing_whitespace = false
