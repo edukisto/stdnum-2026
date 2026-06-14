@@ -1,0 +1,11 @@
+{
+  "name": "@isxn/tsconfig",
+  "version": "0.1.0",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": "./dist/tsconfig.json"
+  },
+  "type": "module"
+}
