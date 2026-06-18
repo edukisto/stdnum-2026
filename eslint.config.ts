@@ -3,18 +3,12 @@ import mdPlugin, { type MarkdownLanguageOptions } from '@eslint/markdown';
 import stylisticPlugin from '@stylistic/eslint-plugin';
 import type { Linter } from 'eslint';
 import * as mdxPlugin from 'eslint-plugin-mdx';
-import { globalIgnores } from 'eslint/config';
+import { defineConfig, globalIgnores } from 'eslint/config';
 import tsPlugin, { type ConfigWithExtends } from 'typescript-eslint';
 
 type tsLanguageOptions = ConfigWithExtends['languageOptions'];
 
-const jsonConfig = jsonPlugin.configs.recommended;
-
-const mdConfig = mdPlugin.configs.recommended;
-
-const mdxConfig = mdxPlugin.configs.flat;
-
-const stylisticConfig = stylisticPlugin.configs.customize({
+const stylisticConfig: Linter.Config = stylisticPlugin.configs.customize({
   arrowParens: true,
   blockSpacing: true,
   braceStyle: 'stroustrup',
@@ -27,7 +21,7 @@ const stylisticConfig = stylisticPlugin.configs.customize({
   severity: 'error',
 });
 
-const eslintConfig: Linter.Config[] = [
+const eslintConfig: Linter.Config[] = defineConfig([
   globalIgnores([
     '**',
     '!packages/**/',
@@ -36,20 +30,26 @@ const eslintConfig: Linter.Config[] = [
     '**/*.d.ts',
   ]),
   {
-    ...stylisticConfig,
+    extends: [
+      stylisticConfig,
+    ],
     files: [
       '**/*.{js,jsx}',
     ],
   },
   {
-    ...jsonConfig,
+    extends: [
+      jsonPlugin.configs.recommended,
+    ],
     files: [
       '**/*.json',
     ],
     language: 'json/json',
   },
   {
-    ...jsonConfig,
+    extends: [
+      jsonPlugin.configs.recommended,
+    ],
     files: [
       '**/*.code-workspace',
       '**/tsconfig*.json',
@@ -59,8 +59,10 @@ const eslintConfig: Linter.Config[] = [
       allowTrailingCommas: true,
     } satisfies JSONLanguageOptions,
   },
-  ...mdConfig,
   {
+    extends: [
+      mdPlugin.configs.recommended,
+    ],
     files: [
       '**/*.md',
     ],
@@ -75,7 +77,9 @@ const eslintConfig: Linter.Config[] = [
     },
   },
   {
-    ...mdxConfig,
+    extends: [
+      mdxPlugin.configs.flat,
+    ],
     files: [
       '**/*.{md,mdx}',
     ],
@@ -84,12 +88,33 @@ const eslintConfig: Linter.Config[] = [
     }),
   },
   {
-    ...stylisticConfig,
+    extends: [
+      tsPlugin.configs.strict,
+      tsPlugin.configs.stylistic,
+      stylisticConfig,
+    ],
+    files: [
+      /** See `configs.flatCodeBlocks` in `eslint-plugin-mdx`. */
+      '**/*.{md,mdx}/**/*.{ts,tsx}',
+    ],
+    rules: {
+      /** Allow empty code blocks. */
+      '@stylistic/no-multiple-empty-lines': 'off',
+    },
+  },
+  {
+    extends: [
+      tsPlugin.configs.strictTypeChecked,
+      tsPlugin.configs.stylisticTypeChecked,
+      stylisticConfig,
+    ],
     files: [
       '**/*.{ts,tsx}',
     ],
+    ignores: [
+      '**/*.{md,mdx}/**/*.{ts,tsx}',
+    ],
     languageOptions: {
-      parser: tsPlugin.parser,
       parserOptions: {
         projectService: true,
       },
@@ -105,29 +130,7 @@ const eslintConfig: Linter.Config[] = [
       'json/no-empty-keys': 'off',
     },
   },
-  {
-    files: [
-      /** See `configs.flatCodeBlocks` in `eslint-plugin-mdx`. */
-      '**/*.{md,mdx}/**/*',
-    ],
-    rules: {
-      /** Allow empty code blocks. */
-      '@stylistic/no-multiple-empty-lines': 'off',
-    },
-  },
-  {
-    files: [
-      /** See `configs.flatCodeBlocks` in `eslint-plugin-mdx`. */
-      '**/*.{md,mdx}/**/*.{ts,tsx}',
-    ],
-    languageOptions: {
-      parser: tsPlugin.parser,
-      parserOptions: {
-        projectService: false,
-      },
-    } satisfies tsLanguageOptions,
-  },
-];
+]);
 
 export {
   eslintConfig as default,
