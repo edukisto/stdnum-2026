@@ -25,18 +25,10 @@ const eslintConfig: Linter.Config[] = defineConfig([
   globalIgnores([
     '**',
     '!packages/**/',
-    '!**/*.{code-workspace,js,json,jsx,md,mdx,ts,tsx}',
+    '!**/*.{code-workspace,json,md,mdx,ts,tsx}',
     '**/{coverage,node_modules}/**',
     '**/*.d.ts',
   ]),
-  {
-    extends: [
-      stylisticConfig,
-    ],
-    files: [
-      '**/*.{js,jsx}',
-    ],
-  },
   {
     extends: [
       jsonPlugin.configs.recommended,
