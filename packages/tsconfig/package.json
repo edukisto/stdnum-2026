@@ -1,11 +1,24 @@
 {
-  "name": "@isxn/tsconfig",
-  "version": "0.1.0",
-  "files": [
-    "dist"
-  ],
+  "bugs": {
+    "url": "https://github.com/edukisto/isxn/issues"
+  },
+  "description": "Base TSConfig for the project.",
   "exports": {
     ".": "./dist/tsconfig.json"
   },
-  "type": "module"
+  "files": [
+    "dist/tsconfig.json"
+  ],
+  "license": "MIT",
+  "name": "@isxn/tsconfig",
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/edukisto/isxn.git"
+  },
+  "type": "module",
+  "version": "0.1.0"
 }
