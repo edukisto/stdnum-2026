@@ -1,0 +1,27 @@
+{
+  "bugs": {
+    "url": "https://github.com/edukisto/isxn/issues"
+  },
+  "description": "ISBN range messages converted from XML into JSON.",
+  "exports": {
+    ".": "./dist/isbn-ranges.json"
+  },
+  "files": [
+    "dist/isbn-ranges.json"
+  ],
+  "keywords": [
+    "ISBN"
+  ],
+  "license": "MIT",
+  "name": "@isxn/isbn-ranges",
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/edukisto/isxn.git"
+  },
+  "type": "module",
+  "version": "0.1.0"
+}
