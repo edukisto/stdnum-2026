@@ -83,7 +83,7 @@ const eslintConfig: Linter.Config[] = defineConfig([
   },
   {
     extends: [
-      /** Can't lint both inside and outside of code blocks. */
+      /** Can't lint inside and outside code blocks simultaneously. */
       /** See <https://github.com/eslint/markdown/issues/276>. */
       /** Use `eslint-plugin-mdx` for code blocks in both Markdown and MDX. */
       markdownPlugin.configs.recommended,
@@ -96,8 +96,8 @@ const eslintConfig: Linter.Config[] = defineConfig([
       frontmatter: false,
       math: true,
     } satisfies MarkdownLanguageOptions,
+    /** See <https://github.com/eslint/markdown#rules>. */
     rules: {
-      /** See <https://github.com/eslint/markdown#rules>. */
       /** Non-recommended. */
       'markdown/fenced-code-meta': 'off',
       'markdown/no-bare-urls': 'error',
