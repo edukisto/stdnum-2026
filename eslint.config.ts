@@ -107,6 +107,7 @@ const eslintConfig: Linter.Config[] = defineConfig([
       ] }],
       /** Recommended. */
       'markdown/fenced-code-language': ['error', { required: [
+        'sh',
         'typescript',
       ] }],
       'markdown/heading-increment': ['error', { frontmatterTitle: '' }],
