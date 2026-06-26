@@ -1,0 +1,31 @@
+{
+  "bugs": {
+    "url": "https://github.com/edukisto/isxn/issues"
+  },
+  "description": "Converts an ISBN range message from XML into JSON.",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist/index.d.ts",
+    "dist/index.js"
+  ],
+  "keywords": [
+    "ISBN"
+  ],
+  "license": "MIT",
+  "name": "@isxn/isbn-ranges-converter",
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/edukisto/isxn.git"
+  },
+  "type": "module",
+  "version": "0.1.0"
+}
