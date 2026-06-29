@@ -1,0 +1,13 @@
+{
+  "$schema": "https://www.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "noEmit": true
+  },
+  "extends": [
+    "@isxn/tsconfig",
+    "./tsconfig.eslint.json"
+  ],
+  "include": [
+    "**/*.ts"
+  ]
+}
