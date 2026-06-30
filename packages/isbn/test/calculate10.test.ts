@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import calculate10 from '../src/calculate10.ts';
+import { calculate10 } from '../src/calculate10.ts';
 
 describe('calculates the check digit for a 10-digit ISBN', () => {
   test.each([

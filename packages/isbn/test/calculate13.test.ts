@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import calculate13 from '../src/calculate13.ts';
+import { calculate13 } from '../src/calculate13.ts';
 
 describe('calculates the check digit for a 13-digit ISBN', () => {
   test.each([

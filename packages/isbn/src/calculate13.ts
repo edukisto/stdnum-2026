@@ -4,9 +4,9 @@ function calculate13(isbn: string): string {
     sum += (isbn.charCodeAt(i) - 48) + (isbn.charCodeAt(i + 1) - 48) * 3;
   }
   const mod = sum % 10;
-  return mod === 0 ? '0' : '0123456789'[10 - mod]!;
+  return mod === 0 ? '0' : '0123456789'.charAt(10 - mod);
 }
 
 export {
-  calculate13 as default,
+  calculate13,
 };
