@@ -28,7 +28,7 @@ interface IsbnRangeMessage {
   };
 }
 
-const entrySchema = Type.Object({
+const technicalInformationSchema = Type.Object({
   agency: Type.String(),
   prefix: Type.Integer(),
   rules: Type.Object({
@@ -47,13 +47,13 @@ const entrySchema = Type.Object({
 const schema = Type.Object({
   isbnRangeMessage: Type.Object({
     eanUccPrefixes: Type.Object({
-      eanUcc: Type.Array(entrySchema),
+      eanUcc: Type.Array(technicalInformationSchema),
     }),
     messageDate: Type.String(),
     messageSerialNumber: Type.Optional(Type.String()),
     messageSource: Type.Optional(Type.String()),
     registrationGroups: Type.Object({
-      group: Type.Array(entrySchema),
+      group: Type.Array(technicalInformationSchema),
     }),
   }),
 });
